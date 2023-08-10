@@ -5,8 +5,8 @@ name: Deploy flows to env
 env:
   PREFECT_API_KEY: ${{ secrets.PREFECT_API_KEY }}
   PREFECT_API_URL: ${{ secrets.PREFECT_API_URL }}
-  PROD_WORKSPACE: 'nitinkeshavboutlookcom/dev'
-  #DEV_WORKSPACE: 'prefect-technologies/inconspicuous-pond'
+  #PROD_WORKSPACE: 'nitinkeshavboutlookcom/dev'
+  DEV_WORKSPACE: 'nitinkeshavboutlookcom/dev'
 
 on:
   workflow_dispatch:
@@ -52,8 +52,8 @@ jobs:
           echo "Modified Python files: $files"
           echo "files=$files" >> $GITHUB_ENV
 
-      - name: switch to prod
-        run: prefect cloud workspace set -w ${{ env.PROD_WORKSPACE }}
+      - name: switch to dev
+        run: prefect cloud workspace set -w ${{ env.DEV_WORKSPACE }}
         if: github.ref == 'refs/heads/main'
 
       - name: Deploy flows in branch defined in modified files
