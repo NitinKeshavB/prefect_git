@@ -54,8 +54,8 @@ jobs:
 
       - name: switch to dev
         run: |
-          prefect cloud login -k pnu_PxirMNgAXP5xsEIXNqEziqQpJikcJ81CyfHe
-          prefect cloud workspace set -w ${{ env.DEV_WORKSPACE }}
+          prefect cloud login --key ${{ env.PREFECT_API_KEY }}
+          prefect cloud workspace set --workspace ${{ env.DEV_WORKSPACE }}
         if: github.ref == 'refs/heads/main'
 
       - name: Deploy flows in branch defined in modified files
