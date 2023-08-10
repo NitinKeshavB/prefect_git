@@ -6,6 +6,7 @@ from prefect import flow, task
 from prefect.server.api.server import SERVER_API_VERSION
 from prefect.states import Completed
 
+
 @task
 def log_platform_info():
     print(
