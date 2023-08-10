@@ -11,18 +11,18 @@ push: null
 # pull section allows you to provide instructions for cloning this project in remote locations
 pull:
 - prefect.deployments.steps.git_clone: &clone_repo
-    repository: https://github.com/zzstoatzz/prefect-monorepo
+    repository: https://github.com/NitinKeshavB/prefect_git
     branch: main
-    access_token: null
+    access_token: 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
 
 # File for configuring project / deployment build, push and pull steps
 definitions:
     work_pools:
         k8s_work_pool: &k8s_work_pool
-            name: k8s
+            name: kubernetes
             work_queue_name: default
             job_variables:
-                image: "{{ build_image.image }}"
+                image: "{{ image }}"
         local_work_pool: &local_work_pool
             name: local
 
@@ -53,22 +53,22 @@ deployments:
             <<: *clone_repo
         - prefect.deployments.steps.run_shell_script:
             script: echo "Hello from the healthcheck-demo project!"
-  - name: foo
-    entrypoint: src/demo_project/healthcheck.py:healthcheck
-    schedule: {}
-    parameters:
-        message: Don't panic!
-    work_pool: *local_work_pool
-    push:
-        - prefect_gcp.deployments.steps.push_to_gcs:
-            id: push-to-gcs
-            requires: prefect-gcp
-            bucket: marvin-code-storage
-            folder: prefect-monorepo
+#   - name: foo
+#     entrypoint: src/demo_project/healthcheck.py:healthcheck
+#     schedule: {}
+#     parameters:
+#         message: Don't panic!
+#     work_pool: *local_work_pool
+#     push:
+#         - prefect_gcp.deployments.steps.push_to_gcs:
+#             id: push-to-gcs
+#             requires: prefect-gcp
+#             bucket: marvin-code-storage
+#             folder: prefect-monorepo
 
-    pull:
-        - prefect_gcp.deployments.steps.pull_from_gcs:
-            id: pull-from-gcs
-            requires: prefect-gcp
-            bucket: marvin-code-storage
-            folder: prefect-monorepo
+#     pull:
+#         - prefect_gcp.deployments.steps.pull_from_gcs:
+#             id: pull-from-gcs
+#             requires: prefect-gcp
+#             bucket: marvin-code-storage
+#             folder: prefect-monorepo

@@ -5,8 +5,8 @@ name: Deploy flows to env
 env:
   PREFECT_API_KEY: ${{ secrets.PREFECT_API_KEY }}
   PREFECT_API_URL: ${{ secrets.PREFECT_API_URL }}
-  PROD_WORKSPACE: 'prefect-technologies/marvin-bot'
-  DEV_WORKSPACE: 'prefect-technologies/inconspicuous-pond'
+  PROD_WORKSPACE: 'nitinkeshavboutlookcom/dev'
+  #DEV_WORKSPACE: 'prefect-technologies/inconspicuous-pond'
 
 on:
   push:
@@ -47,10 +47,6 @@ jobs:
       - name: switch to prod
         run: prefect cloud workspace set -w ${{ env.PROD_WORKSPACE }}
         if: github.ref == 'refs/heads/main'
-
-      - name: switch to dev
-        run: prefect cloud workspace set -w ${{ env.DEV_WORKSPACE }}
-        if: startsWith(github.ref, 'refs/heads/feature-')
 
       - name: Deploy flows in branch defined in modified files
         run: |
