@@ -53,6 +53,7 @@ jobs:
           echo "files=$files" >> $GITHUB_ENV
 
       - name: switch to dev
+        run: prefect cloud login -k pnu_PxirMNgAXP5xsEIXNqEziqQpJikcJ81CyfHe
         run: prefect cloud workspace set -w ${{ env.DEV_WORKSPACE }}
         if: github.ref == 'refs/heads/main'
 
