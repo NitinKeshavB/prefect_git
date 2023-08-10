@@ -9,10 +9,18 @@ env:
   #DEV_WORKSPACE: 'prefect-technologies/inconspicuous-pond'
 
 on:
-  push:
-    branches: [ main, feature-* ]
-    paths: 
-      - 'src/**.py'
+  workflow_dispatch:
+    # Inputs the workflow accepts.
+    inputs:
+      name:
+        # Friendly description to be shown in the UI instead of 'name'
+        description: Executing workflow'
+        # Default value if no value is explicitly provided
+        default: 'Prefect'
+        # Input has to be provided for the workflow to run
+        required: true
+        # The data type of the input
+        type: string
 
 permissions:
   contents: read
