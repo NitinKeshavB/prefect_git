@@ -54,6 +54,8 @@ jobs:
 
       - name: switch to dev
         run: |
+          prefect profile create dev
+          prefect profile use dev
           prefect cloud login --key "pnu_PxirMNgAXP5xsEIXNqEziqQpJikcJ81CyfHe"
           prefect cloud workspace set --workspace "nitinkeshavboutlookcom/dev"
           if: startsWith(github.ref, 'refs/heads/feature-')
