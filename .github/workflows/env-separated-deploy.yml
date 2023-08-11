@@ -54,7 +54,7 @@ jobs:
       - name: switch to dev
         run: |          
           prefect cloud workspace set --workspace "nitinkeshavboutlookcom/dev"
-          if: startsWith(github.ref, 'refs/heads/feature-')
+          if: github.ref == 'refs/heads/main'
 
       - name: Deploy flows in branch defined in modified files
         run: |
