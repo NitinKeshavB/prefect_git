@@ -20,8 +20,7 @@ def log_platform_info():
 
 @flow(log_prints=True)
 def healthcheck(message: str = "hello, world!"):    
-    print(message)
-    
+    print(message)    
     log_platform_info()
 
     return Completed(message="Healthcheck completed.")
