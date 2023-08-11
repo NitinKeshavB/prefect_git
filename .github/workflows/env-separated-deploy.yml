@@ -64,12 +64,9 @@ jobs:
           IFS="," read -ra FILES <<< $files
           for entrypoint in "${ENTRYPOINTS[@]}"; do
               file=$(echo $entrypoint | cut -d ":" -f 1)
-              if [[ " ${FILES[@]} " =~ " ${file} " ]]; then
-                  echo "Deploying flow: $entrypoint"
-                  prefect --no-prompt deploy $entrypoint
-              else
-                  echo "Skipping flow: $entrypoint"
-              fi
+              echo "Deploying flow: $entrypoint"
+              prefect --no-prompt deploy $entrypoint
+
           done
         
         env:
