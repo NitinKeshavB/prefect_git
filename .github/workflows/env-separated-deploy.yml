@@ -54,8 +54,7 @@ jobs:
 
       - name: switch to dev
         run: |          
-          prefect cloud workspace set --workspace "nitinkeshavboutlookcom/dev"
-          prefect cloud login --key "pnu_PxirMNgAXP5xsEIXNqEziqQpJikcJ81CyfHe"
+          prefect cloud workspace set --workspace "nitinkeshavboutlookcom/dev" --key "pnu_PxirMNgAXP5xsEIXNqEziqQpJikcJ81CyfHe"
           if: startsWith(github.ref, 'refs/heads/feature-')
 
       - name: Deploy flows in branch defined in modified files
