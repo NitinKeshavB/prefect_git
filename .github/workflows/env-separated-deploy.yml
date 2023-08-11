@@ -47,7 +47,7 @@ jobs:
       - name: Get list of modified python files
         id: getfile
         run: |
-          files=$(git diff --name-only ${{ github.event.before }} ${{ github.sha }} | grep '^src/.*\.py$' | tr '\n' ',')
+          files=$(git diff --name-only | grep '^src/.*\.py$' | tr '\n' ',')
           echo "Modified Python files: $files"
           echo "files=$files" >> $GITHUB_ENV
 
