@@ -13,7 +13,7 @@ pull:
 - prefect.deployments.steps.git_clone: &clone_repo
     repository: https://github.com/NitinKeshavB/prefect_git
     branch: main
-    access_token: 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
+    access_token: "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"
 
 # File for configuring project / deployment build, push and pull steps
 definitions:
@@ -22,7 +22,7 @@ definitions:
             name: kubernetes
             work_queue_name: default
             job_variables:
-                image: "{{ image }}"
+                image: "jllsbxprefect/prefect_monorepo_kube"
         local_work_pool: &local_work_pool
             name: local
 
@@ -37,7 +37,7 @@ definitions:
             - prefect_docker.deployments.steps.build_docker_image:
                 id: build-image
                 requires: prefect-docker>=0.2.0
-                image_name: zzstoatzz/prefect-monorepo
+                image_name: jllsbxprefect/prefect_monorepo_kube"
                 dockerfile: Dockerfile.demo
                 push: true
 
